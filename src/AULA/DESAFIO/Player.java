@@ -90,6 +90,13 @@ public class Player {
         atualizaPosicaoJogador(ME, MC, MD, MB);
     }
 
+    public void setPosicao(int x, int y) {
+        this.posX = x;
+        this.posY = y;
+        this.AreaColisao.x = this.posX + 3;
+        this.AreaColisao.y = this.posY + this.Altu / 2;
+    }
+
     // ── DESAFIO 08 (capítulo anterior) – animação de sprite ─────────────────
     public void atualizaSprite(boolean moveEsq, boolean moveCima,
                                 boolean moveDir, boolean moveBaixo) {

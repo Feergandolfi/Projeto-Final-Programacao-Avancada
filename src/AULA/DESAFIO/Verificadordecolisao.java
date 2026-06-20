@@ -13,7 +13,7 @@ public class Verificadordecolisao {
     // Retorna true se o tile bloqueia passagem.
     // Apenas o tijolo cinza (valor 0 = wall1.png) bloqueia.
     private boolean isSolido(int valor) {
-        return valor == 0;
+        return valor == 0 || valor == 2 || valor == 4 || valor == 5;
     }
 
     // Protege contra ArrayIndexOutOfBounds (Desafio 06)

@@ -60,6 +60,11 @@ public class GameLoop extends Thread implements Runnable, ActionListener {
                             ET.movePraDir, ET.movePraBaixo);
                 }
 
+                if (cenaDoJogo.cenario.jogadorNoPortal(cenaDoJogo.Jogador)
+                        && cenaDoJogo.cenario.cenarioAtual < 6) {
+                    cenaDoJogo.cenario.avancarCenario(cenaDoJogo.Jogador);
+                }
+
                 cenaDoJogo.repaint();
                 this.contadorDeFPS++;
                 tempoDecorrido = 0;
