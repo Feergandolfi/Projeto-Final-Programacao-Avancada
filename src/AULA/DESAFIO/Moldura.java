@@ -15,6 +15,9 @@ public class Moldura extends JFrame {
         this.add(painelCentro, BorderLayout.CENTER);
         this.add(painelSul,    BorderLayout.SOUTH);
 
+        // compartilha o inventario do painel central com o painel sul
+        painelSul.inventario = painelCentro.inventario;
+
         // Adiciona o teclado no JFrame também — garante que as teclas
         // funcionem mesmo que nenhum painel esteja com foco
         this.addKeyListener(painelCentro.ET);

@@ -65,6 +65,14 @@ public class GameLoop extends Thread implements Runnable, ActionListener {
                     cenaDoJogo.cenario.avancarCenario(cenaDoJogo.Jogador);
                 }
 
+                for (int i = 0; i < cenaDoJogo.itens.size(); i++) {
+                    Item item = cenaDoJogo.itens.get(i);
+                    if (!item.coletado && cenaDoJogo.Jogador.AreaColisao.intersects(item.area)) {
+                        cenaDoJogo.inventario.adicionar(item.nome);
+                        item.coletado = true;
+                    }
+                }
+
                 cenaDoJogo.repaint();
                 this.contadorDeFPS++;
                 tempoDecorrido = 0;

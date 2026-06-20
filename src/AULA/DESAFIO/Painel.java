@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
 import javax.swing.JPanel;
 
 public class Painel extends JPanel {
@@ -14,6 +15,9 @@ public class Painel extends JPanel {
     EscutadorTeclado ET;
     SpriteLoop SL;
     tileMap cenario;
+    Inventario      inventario;
+    ArrayList<Item> itens;
+    NPC             npc;
 
     public Painel(String Posicao) {
         this.Posicao = Posicao;
@@ -28,6 +32,14 @@ public class Painel extends JPanel {
 
             // cenario criado ANTES das threads para evitar NullPointerException
             this.cenario = new tileMap();
+
+            inventario = new Inventario();
+
+            itens = new ArrayList<>();
+            itens.add(new Item("Espada", 240, 48));
+            itens.add(new Item("Escudo", 48,  240));
+
+            npc = new NPC(192, 192, "Bem-vindo, aventureiro!");
 
             GL = new GameLoop(this, ET);
             GL.start();
@@ -50,7 +62,15 @@ public class Painel extends JPanel {
 
         if (this.Posicao.equals("Centro")) {
             this.cenario.desenhar(D2);
+            for (int i = 0; i < itens.size(); i++) {
+                itens.get(i).desenhar(D2);
+            }
+            npc.desenhar(D2);
             Jogador.DesenharPLayer(D2);
+        } else {
+            if (inventario != null) {
+                inventario.desenhar(D2);
+            }
         }
     }
 }
