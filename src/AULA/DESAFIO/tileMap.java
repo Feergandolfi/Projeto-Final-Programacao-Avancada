@@ -61,7 +61,7 @@ public class tileMap {
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0}  // Portal (4) posicionado no mesmo padrão
     };
 
-    // CENÁRIO 4 — Labirinto de Pedras (Portal assume o piso de Grama)
+    // CENÁRIO 4 — Labirinto de Pedras (Portal assume o piso de Grama).
     int[][] cenario4DoJogo = {
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
         {0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 0},
