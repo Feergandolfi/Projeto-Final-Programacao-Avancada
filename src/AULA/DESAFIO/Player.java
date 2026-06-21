@@ -28,22 +28,19 @@ public class Player {
     // ────────────────────────────────────────────────────
 
     public Player() {
-        // ── atributos do Jogador ────────────────────────
         this.posX = 200;
         this.posY = 100;
         this.Larg = 48;
         this.Altu = 48;
 
-        // ── atributos da Área de Colisão ────────────────
-        // A área é menor que o sprite e fica na metade inferior
-        // para dar sensação de profundidade (os pés colidem)
+        // AJUSTE: Reduzimos a largura para (this.Larg - 24) e centralizamos com "+ 12"
+        // Isso deixa a caixa mais estreita para passar suavemente nas portas e portais de 48px
         AreaColisao = new Rectangle();
-        this.AreaColisao.x      = this.posX + 3;
+        this.AreaColisao.x      = this.posX + 12;
         this.AreaColisao.y      = this.posY + this.Altu / 2;
-        this.AreaColisao.width  = this.Larg - 20;
+        this.AreaColisao.width  = this.Larg - 24;
         this.AreaColisao.height = this.Altu / 2;
 
-        // ── carrega sprites ─────────────────────────────
         for (int i = 0; i < 3; i++) {
             this.imgPlayerDown[i]  = new ImageIcon("res/PLAYER/down"  + (i + 1) + ".png").getImage();
             this.imgPlayerRight[i] = new ImageIcon("res/PLAYER/right" + (i + 1) + ".png").getImage();
@@ -53,7 +50,6 @@ public class Player {
 
         this.imagemPlayer = this.imgPlayerDown[this.frameJogador];
     }
-
     // ── DESAFIO 02 – método atualizado ──────────────────
     public void desenhaJogador(Graphics2D d2) {
         // Descomenta as linhas abaixo para depurar a área sólida (quadrado preto)
@@ -93,7 +89,7 @@ public class Player {
     public void setPosicao(int x, int y) {
         this.posX = x;
         this.posY = y;
-        this.AreaColisao.x = this.posX + 3;
+        this.AreaColisao.x = this.posX + 12;
         this.AreaColisao.y = this.posY + this.Altu / 2;
     }
 

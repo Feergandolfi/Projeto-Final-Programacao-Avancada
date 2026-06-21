@@ -10,13 +10,11 @@ public class Verificadordecolisao {
 
     public Verificadordecolisao() { }
 
-    // Retorna true se o tile bloqueia passagem.
-    // Apenas o tijolo cinza (valor 0 = wall1.png) bloqueia.
+    // AJUSTE: Removido o valor 4 (portal). Agora o portal não bloqueia mais o jogador.
     private boolean isSolido(int valor) {
-        return valor == 0 || valor == 2 || valor == 4 || valor == 5;
+        return valor == 0 || valor == 2 || valor == 5;
     }
 
-    // Protege contra ArrayIndexOutOfBounds (Desafio 06)
     private boolean dentroDoLimite(int lin, int col, int[][] cenario) {
         return lin >= 0 && lin < cenario.length
             && col >= 0 && col < cenario[0].length;
@@ -25,8 +23,6 @@ public class Verificadordecolisao {
     public boolean OcorreuColisao(Player Jogador, tileMap CenaDoJogo, String Direcao) {
         colidiu = false;
 
-        // Lê o array diretamente — evita race condition com o objeto tiles
-        // que é compartilhado com a thread de renderização
         int[][] mapa = CenaDoJogo.cenarioValido;
 
         int bordaEsqX  = (int) Jogador.AreaColisao.getX();

@@ -12,10 +12,7 @@ public class tiles {
     private Image imgGrass, imgSand, imgWall, imgWater;
     private Image imgWhite, imgGray;
 
-    // ── DESAFIO 05 ─────────────────────────────────────
-    // Atributo que indica se este tile bloqueia passagem
     private boolean colisao;
-    // ───────────────────────────────────────────────────
 
     public tiles() {
         this.carregaImagensTile();
@@ -36,44 +33,34 @@ public class tiles {
         icon = new ImageIcon("res/tiles/gray.png");
         this.imgGray = icon.getImage();
     }
-
-    // ── DESAFIO 05 ─────────────────────────────────────
-    // Define imagem e permissão de passagem para cada valor da matriz
+   
     public void caregaPecaDaMatriz(int valorDaPeca) {
         if (valorDaPeca == 0) {
             this.imgAtual = this.imgWall;
-            this.colisao  = true;  // não permite passagem
+            this.colisao  = true;  
         }
         if (valorDaPeca == 1) {
             this.imgAtual = this.imgSand;
-            this.colisao  = false; // permite passagem
+            this.colisao  = false; 
         }
         if (valorDaPeca == 2) {
             this.imgAtual = this.imgWater;
-            this.colisao  = true;  // não permite passagem
+            this.colisao  = true;  
         }
         if (valorDaPeca == 3) {
             this.imgAtual = this.imgGrass;
-            this.colisao  = false; // permite passagem
+            this.colisao  = false; 
         }
         if (valorDaPeca == 4) {
-            // DESAFIO 06 — tile de portal/passagem bloqueado para
-            // impedir que o jogador saia do cenário atual
-            this.imgAtual = this.imgWhite;
-            this.colisao  = true;  // não permite saída do cenário
+            // CORREÇÃO: O portal agora herda visualmente a grama e não bloqueia o jogador
+            this.imgAtual = this.imgGrass;
+            this.colisao  = false; 
         }
         if (valorDaPeca == 5) {
             this.imgAtual = this.imgGray;
-            this.colisao  = true;  // não permite passagem (pedra)
+            this.colisao  = true;  
         }
-
-        // ── Linhas auxiliares de depuração (DESAFIO 03 – deixar em comentário
-        //    depois de verificar o comportamento)
-        // if (this.colisao == true)  this.imgAtual = this.imgGray;
-        // else                       this.imgAtual = this.imgWhite;
     }
-
-    // ── DESAFIO 05 – getter e setter ───────────────────
     public boolean isColisao() {
         return colisao;
     }
@@ -81,12 +68,15 @@ public class tiles {
     public void setColisao(boolean colisao) {
         this.colisao = colisao;
     }
-    // ───────────────────────────────────────────────────
 
     public void desenhaTile(Graphics2D desenho, int linha, int coluna) {
         this.posX = coluna * this.largura;
         this.posY = linha  * this.altura;
-        desenho.drawImage(this.imgAtual, this.posX, this.posY,
-                          this.largura, this.altura, null);
+        
+        // Só desenha se a imagem não for nula (evita desenhar o quadrado branco do portal)
+        if (this.imgAtual != null) {
+            desenho.drawImage(this.imgAtual, this.posX, this.posY,
+                              this.largura, this.altura, null);
+        }
     }
 }
